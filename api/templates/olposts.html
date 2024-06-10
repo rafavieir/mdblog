@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Markdown Blog{% endblock %}
+
+{% block content %}
+<select id="categoria">
+    <option value="">Todas as Categorias</option>
+    {% for post in posts %}
+        <option value="{{ categoria }}">{{post.category}}</option>
+    {% endfor %}
+</select>
+    <h2>Lista de Posts</h2>
+    <div class="post-grid">
+        {% for post in posts %}
+            <div class="post-card">
+                <a href="{{ url_for('post', name=post.path.replace('posts/', '')) }}">
+                    <h3>{{ post.title }}</h3>
+                </a>
+                <p><small>{{ post.date }}</small></p>
+                <p><small>{{ post.category }}</small></p>
+            </div>
+        {% endfor %}
+    </div>
+    <style>
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .post-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .post-card a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .post-card h3 {
+            margin: 0;
+        }
+
+        .post-card small {
+            color: #777;
+        }
+    </style>
+{% endblock %}

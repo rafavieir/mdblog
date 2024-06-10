@@ -1,0 +1,39 @@
+# Arquivos de sistema
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+
+# Ambiente virtual 
+venv/
+env/
+*.pyc
+
+# Arquivos de log
+logs/
+*.log
+
+# Arquivos gerados pelo sistema de construção 
+build/
+dist/
+
+# Arquivos gerados pela documentação
+docs/_build/
+
+# Dependências geradas
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+
+# Arquivos específicos de IDE 
+.idea/
+.vscode/
+
+# Arquivos de configuração 
+config.cfg
+secrets.cfg

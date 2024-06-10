@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Título Padrão{% endblock %}</title>
+    <style>
+        /* Estilos CSS para o menu e rodapé */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Estilos para o conteúdo principal */
+        main {
+            padding: 20px 0;
+        }
+
+        /* Outros estilos específicos podem ser adicionados aqui */
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="/">Blog Markdown</a></h1>
+                <img src="/static/maquina-de-escrever.png" alt="Máquina de Escrever" width="80" height="80">
+                <ul>
+                    <li><a href="/">Página Inicial</a></li>
+                    <li><a href="/sobre">Sobre</a></li>
+                    <li><a href="/contato">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            &copy; {{ current_year }} Blog Markdown
+        </div>
+    </footer>
+</body>
+</html>

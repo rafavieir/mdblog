@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Markdown Blog{% endblock %}
+
+{% block content %}
+<div class="filter-container">
+    <label for="categoria">Filtrar por Categoria:</label>
+    <select id="categoria">
+        <option value="">Todas as Categorias</option>
+        {% for post in posts %}
+            <option value="{{ post.category }}">{{ post.category }}</option>
+        {% endfor %}
+    </select>
+</div>
+<h2>Lista de Posts</h2>
+<div class="post-grid" id="posts-container">
+    {% for post in posts %}
+        <div class="post-card" data-categoria="{{ post.category }}">
+            <a href="{{ url_for('post', name=post.path.replace('posts/', '')) }}">
+                <img src="{{ post.image_url }}" alt="{{ post.title }}">
+                <h3>{{ post.title }}</h3>
+            </a>
+            <p class="post-details">
+                <span class="post-date">{{ post.date }}</span>
+                <span class="post-category">{{ post.category }}</span>
+            </p>
+        </div>
+    {% endfor %}
+</div>
+<style>
+    .filter-container {
+        margin-bottom: 20px;
+    }
+
+    .filter-container label {
+        font-weight: bold;
+    }
+
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .post-card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    .post-card a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .post-card img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .post-card h3 {
+        margin: 0;
+    }
+
+    .post-details {
+        margin-top: 10px;
+        color: #777;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const categoriaSelect = document.getElementById("categoria");
+        const postsContainer = document.getElementById("posts-container");
+        const postCards = postsContainer.getElementsByClassName("post-card");
+
+        categoriaSelect.addEventListener("change", function() {
+            const categoriaSelecionada = categoriaSelect.value;
+
+            for (let i = 0; i < postCards.length; i++) {
+                const postCard = postCards[i];
+                const categoriaPost = postCard.getAttribute("data-categoria");
+
+                if (categoriaSelecionada === "" || categoriaSelecionada === categoriaPost) {
+                    postCard.style.display = "block";
+                } else {
+                    postCard.style.display = "none";
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
